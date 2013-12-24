@@ -20,14 +20,14 @@ if [[ ! -e $cache_path/ruby-1.9.3.tgz ]]; then
     curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/ruby-1.9.3.tgz' -s -o - > $cache_path/ruby-1.9.3.tgz
 fi
 
-if [[ ! -e $cache_path/bundler-1.2.1.tgz ]]; then
-    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.3.5.tgz' -s -o - > $cache_path/bundler-1.2.1.tgz
+if [[ ! -e $cache_path/bundler-1.3.5.tgz ]]; then
+    curl 'https://s3.amazonaws.com/heroku-buildpack-ruby/bundler-1.3.5.tgz' -s -o - > $cache_path/bundler-1.3.5.tgz
 fi
 
 cd $build_path
 
 tar xzf $cache_path/ruby-1.9.3.tgz
-tar xzf $cache_path/bundler-1.2.1.tgz
+tar xzf $cache_path/bundler-1.3.5.tgz
 
 echo "-----> Copying cache"
 mkdir -p vendor
