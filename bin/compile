@@ -32,7 +32,9 @@ tar xzf $cache_path/bundler-1.3.5.tgz
 echo "-----> Copying cache"
 mkdir -p vendor
 [[ -d $cache_path/.bundle ]] && cp -a $cache_path/.bundle .
-[[ -d $cache_path/vendor/bundle ]] && cp -a $cache_path/vendor/bundle vendor/bundle
+
+# TODO disabled; this causes the bundle to be installed incompletely
+#[[ -d $cache_path/vendor/bundle ]] && cp -a $cache_path/vendor/bundle vendor/bundle
 
 echo "-----> Running bundler"
 bin/bundle install --without development:test --path vendor/bundle --binstubs bin/ | indent
