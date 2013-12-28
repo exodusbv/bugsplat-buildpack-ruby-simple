@@ -7,6 +7,9 @@ set -e
 
 build_path=$1
 cache_path=$2
+bundle_path="$build_path/../../shared/bundle"
+
+mkdir -p $bundle_path
 
 indent() {
   sed -u 's/^/       /'
@@ -37,7 +40,7 @@ mkdir -p vendor
 #[[ -d $cache_path/vendor/bundle ]] && cp -a $cache_path/vendor/bundle vendor/bundle
 
 echo "-----> Running bundler"
-bin/bundle install --without development:test --path vendor/bundle --binstubs bin/ | indent
+bin/bundle install --without development:test --path $bundle_path --binstubs bin/ | indent
 
 if bin/rake -n assets:precompile >/dev/null 2>&1; then
     echo "-----> Precompiling assets"
