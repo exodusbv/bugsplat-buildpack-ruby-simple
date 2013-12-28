@@ -32,12 +32,8 @@ cd $build_path
 tar xzf $cache_path/ruby-1.9.3.tgz
 tar xzf $cache_path/bundler-1.3.5.tgz
 
-echo "-----> Copying cache"
 mkdir -p vendor
 [[ -d $cache_path/.bundle ]] && cp -a $cache_path/.bundle .
-
-# TODO disabled; this causes the bundle to be installed incompletely
-#[[ -d $cache_path/vendor/bundle ]] && cp -a $cache_path/vendor/bundle vendor/bundle
 
 echo "-----> Running bundler"
 bin/bundle install --without development:test --path $bundle_path --binstubs bin/ | indent
@@ -50,10 +46,8 @@ fi
 echo "-----> Cleaning cache"
 
 rm -rf $cache_path/.bundle
-rm -rf $cache_path/vendor/bundle
 
 mkdir -p $cache_path/vendor
-cp -a vendor/bundle $cache_path/vendor
 cp -a .bundle $cache_path
 
 echo "-----> Done"
